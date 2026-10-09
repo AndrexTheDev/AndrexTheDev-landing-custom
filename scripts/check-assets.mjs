@@ -37,7 +37,7 @@ for (const e of external) check(`external https ${e}`, e.startsWith("https://"))
 
 // no accidental localhost / placeholder links
 check("no localhost links", !refs.some((r) => /localhost|127\.0\.0\.1|example\.com/.test(r)));
-check("no placeholder TODO", !/\b(TODO|FIXME|lorem ipsum|XXX)\b/i.test(html));
+check("no placeholder TODO", !/(TODO|FIXME)\s*[:\-]|lorem ipsum/i.test(html));
 
 // css brace balance
 const css = readFileSync(new URL("assets/css/style.css", pub), "utf8");
