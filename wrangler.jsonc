@@ -1,0 +1,19 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "andrexthedev-landing",
+  "compatibility_date": "2026-10-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "pages_build_output_dir": "./public",
+  //
+  // Uncomment once you have created the KV namespace (see README):
+  //   npx wrangler kv namespace create CONTACT_KV
+  // then paste the returned id below.
+  //
+  // "kv_namespaces": [
+  //   { "binding": "CONTACT_KV", "id": "PASTE_NAMESPACE_ID_HERE" }
+  // ],
+  //
+  // Turnstile secret is set as a Pages secret, not here:
+  //   npx wrangler pages secret put TURNSTILE_SECRET --project-name andrexthedev-landing
+  "vars": {}
+}

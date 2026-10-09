@@ -1,0 +1,22 @@
+{
+  "name": "andrexthedev-landing",
+  "version": "0.1.0",
+  "description": "Static landing page for AndrexTheDev, deployed on Cloudflare Pages.",
+  "scripts": {
+    "check": "node scripts/check-contact.mjs && node scripts/check-contact-form.mjs && node scripts/check-page.mjs && node scripts/check-assets.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndrexTheDev/AndrexTheDev-landing-custom.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndrexTheDev/AndrexTheDev-landing-custom/issues"
+  },
+  "homepage": "https://github.com/AndrexTheDev/AndrexTheDev-landing-custom#readme",
+  "devDependencies": {
+    "jsdom": "^30.1.2"
+  },
+  "private": true,
+  "type": "module"
+}
