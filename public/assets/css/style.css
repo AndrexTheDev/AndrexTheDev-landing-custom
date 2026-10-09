@@ -180,6 +180,19 @@ main { max-width: 1060px; margin: 0 auto; padding: 8px 24px 40px; }
 .btn-ghost:hover { box-shadow: none; }
 .link { font-family: var(--mono); font-size: 0.9rem; }
 
+/* full-width feature tile (VortexQuant) */
+.tile.wide { grid-column: span 4; }
+.engines { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.engine {
+  display: flex; flex-direction: column; gap: 6px;
+  border: 1px solid var(--line); background: var(--bg-2);
+  border-radius: 10px; padding: 12px 14px;
+}
+.engine strong { font-family: var(--mono); color: var(--cyan); font-size: 0.85rem; letter-spacing: 0.5px; }
+.engine span { color: var(--dim); font-size: 0.85rem; line-height: 1.5; }
+.note2 { color: var(--dim); }
+.note2 strong { color: var(--text); font-weight: 600; }
+
 /* stack strip */
 .stack { margin-top: 40px; }
 .dim-head { color: var(--dim); font-size: 0.9rem; font-weight: 500; letter-spacing: 1px; }
@@ -233,10 +246,13 @@ form { display: grid; gap: 16px; }
 @media (max-width: 860px) {
   .bento { grid-template-columns: repeat(2, 1fr); }
   .identity { grid-column: span 2; grid-row: auto; }
+  .tile.wide { grid-column: span 2; }
+  .engines { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
   .bento { grid-template-columns: 1fr; }
   .tile, .identity { grid-column: span 1; }
+  .tile.wide { grid-column: span 1; }
   .topnav a:not(.btn-ghost) { display: none; }
 }
 
