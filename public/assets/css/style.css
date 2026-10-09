@@ -18,13 +18,33 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  background: var(--bg);
+  background:
+    radial-gradient(1100px 520px at 12% -6%, rgba(25, 227, 168, 0.07), transparent 60%),
+    radial-gradient(900px 480px at 96% 10%, rgba(34, 211, 238, 0.06), transparent 62%),
+    var(--bg);
   color: var(--text);
   font-family: var(--sans);
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
+
+/* faint chart-grid backdrop, fading toward the fold */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(245, 247, 250, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 247, 250, 0.028) 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, #000 0%, transparent 78%);
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, #000 0%, transparent 78%);
+}
+
+header, main, footer { position: relative; z-index: 1; }
 
 ::selection { background: var(--mint); color: #0E1116; }
 
@@ -78,6 +98,30 @@ main { max-width: 1060px; margin: 0 auto; padding: 8px 24px 40px; }
   transition: transform 0.16s ease, border-color 0.16s ease;
 }
 .tile:hover { transform: translateY(-3px); border-color: rgba(25, 227, 168, 0.35); }
+
+/* staggered entrance */
+.tile { animation: rise 0.55s cubic-bezier(0.2, 0.7, 0.3, 1) backwards; }
+.tile:nth-child(1) { animation-delay: 0.02s; }
+.tile:nth-child(2) { animation-delay: 0.08s; }
+.tile:nth-child(3) { animation-delay: 0.14s; }
+.tile:nth-child(4) { animation-delay: 0.2s; }
+.tile:nth-child(5) { animation-delay: 0.26s; }
+.tile:nth-child(6) { animation-delay: 0.32s; }
+.tile:nth-child(7) { animation-delay: 0.38s; }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+
+/* thin animated accent under the top bar */
+.top { position: relative; }
+.top::after {
+  content: "";
+  position: absolute;
+  left: 24px; right: 24px; bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(25, 227, 168, 0.5), rgba(34, 211, 238, 0.4), transparent);
+  background-size: 200% 100%;
+  animation: slide 6s linear infinite;
+}
+@keyframes slide { to { background-position: 200% 0; } }
 
 .tile h2 { margin: 0; font-size: 1.15rem; letter-spacing: 0.3px; }
 .tile p { margin: 0; color: var(--dim); font-size: 0.95rem; }
@@ -136,6 +180,12 @@ main { max-width: 1060px; margin: 0 auto; padding: 8px 24px 40px; }
 .btn-ghost:hover { box-shadow: none; }
 .link { font-family: var(--mono); font-size: 0.9rem; }
 
+/* stack strip */
+.stack { margin-top: 40px; }
+.dim-head { color: var(--dim); font-size: 0.9rem; font-weight: 500; letter-spacing: 1px; }
+.stack .chips { margin-top: 12px; }
+.stack .chip:hover { color: var(--mint); border-color: rgba(25, 227, 168, 0.4); }
+
 /* about */
 .about { margin-top: 56px; max-width: 68ch; }
 .about h2, .hello h2 { font-size: 1.3rem; letter-spacing: 0.4px; }
@@ -193,5 +243,6 @@ form { display: grid; gap: 16px; }
 @media (prefers-reduced-motion: reduce) {
   .caret, .cursor { animation: none; }
   html { scroll-behavior: auto; }
-  .tile { transition: none; }
+  .tile { transition: none; animation: none; }
+  .top::after { animation: none; }
 }
